@@ -19,6 +19,11 @@ INCLUDE(cmake/CPM.cmake)
 SET(CMAKE_CXX_STANDARD 17)
 
 #
+# Put compiled binaries at the top of the build tree.
+#
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+#
 # Basic common compiler flags.
 #
 SET(COMMON_COMPILER_FLAGS "-pipe -Wall -Wextra -Wno-unused-value -Wno-unused-parameter")

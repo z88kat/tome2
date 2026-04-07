@@ -24,13 +24,13 @@ directory.
 
 To configure for your system, run
 
-    $ cmake .
-    $ make
+    $ cmake -B build
+    $ cmake --build build
 
-You should now be able to run one of the executables in ./src
+You should now be able to run one of the executables in ./build
 to run ToME. For example, you'd run
 
-    $ ./src/tome-x11
+    $ ./build/tome-x11
 
 to start ToME with the X11 frontend.
 
@@ -85,8 +85,8 @@ If you have X11, then a bug in CMake may cause a linker error when
 linking the executable. As a workaround, set the environment variable
 `LDFLAGS` when running CMake. Example:
 
-    $ env LDFLAGS=-L/usr/X11R6/lib cmake .
-    $ make
+    $ env LDFLAGS=-L/usr/X11R6/lib cmake -B build
+    $ cmake --build build
 
 
 ## Compiling on Windows using MinGW

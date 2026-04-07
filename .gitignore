@@ -17,3 +17,4 @@ tome2.cbp
 *.swp
 /.ccls-cache/
 /_deps
+/build
