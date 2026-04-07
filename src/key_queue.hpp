@@ -19,7 +19,7 @@ public:
 	 */
 	enum class push_result_t {
 		OK,
-		OVERFLOW,
+		QUEUE_OVERFLOW,
 	};
 
 public:
@@ -47,7 +47,7 @@ public:
 	{
 		if (m_buffer.full())
 		{
-			return push_result_t::OVERFLOW;
+			return push_result_t::QUEUE_OVERFLOW;
 		}
 
 		m_buffer.push_front(k);
