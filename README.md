@@ -2,6 +2,8 @@ ToME is a [rogue-like](https://en.wikipedia.org/wiki/Roguelike) game.
 
 ![Screenshot](/doc/images/screenshot.png)
 
+For help playing the game, see the [Player Guide](PLAYER_GUIDE.md).
+
 ## Getting Started
 
 ### Prerequisites

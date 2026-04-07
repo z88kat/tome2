@@ -1,4 +1,5 @@
 .idea
+.claude
 *.kdev4
 *.o
 lib*.a
