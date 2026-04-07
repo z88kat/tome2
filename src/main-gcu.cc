@@ -550,7 +550,7 @@ public:
 
 	bool soft_cursor() const final
 	{
-		return false;
+		return true;
 	}
 
 	void nuke() final
@@ -606,6 +606,7 @@ public:
 	void flush_output() final
 	{
 		wrefresh(m_term_data->win);
+		curs_set(0);
 	}
 
 	void noise() final
@@ -630,6 +631,7 @@ public:
 
 	void draw_cursor(int x, int y) final
 	{
+		curs_set(1);
 		wmove(m_term_data->win, y, x);
 	}
 
