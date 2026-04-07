@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /* File: main-gtk.c */
 
 /*
@@ -54,10 +55,10 @@
 #include <dirent.h>
 #include <cassert>
 
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::starts_with;
-using boost::algorithm::equals;
+
+
+
 
 /*
  * Number of pixels inserted between the menu bar and the main screen

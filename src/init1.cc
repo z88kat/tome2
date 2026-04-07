@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 #include "init1.hpp"
 
 #include "ability_type.hpp"
@@ -46,15 +47,15 @@
 #include "z-rand.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/split.hpp>
-#include <boost/optional.hpp>
 
-using boost::algorithm::equals;
-using boost::algorithm::iequals;
-using boost::algorithm::ends_with;
-using boost::algorithm::starts_with;
+
+
+#include <optional>
+
+
+
+
+
 
 
 /**
@@ -690,7 +691,7 @@ static errr grab_one_skill_flag(skill_flag_set *flags, const char *what)
 #define SKF(tier, index, name) \
 	if (equals(what, #name)) \
 	{ \
-	        *flags |= BOOST_PP_CAT(SKF_,name); \
+	        *flags |= SKF_##name; \
 	        return 0; \
         };
 #include "skill_flag_list.hpp"
@@ -710,7 +711,7 @@ static errr grab_one_player_race_flag(player_race_flag_set *flags, const char *w
 #define PR(tier, index, name) \
 	if (equals(what, #name)) \
 	{ \
-	        *flags |= BOOST_PP_CAT(PR_,name); \
+	        *flags |= PR_##name; \
 	        return 0; \
         };
 #include "player_race_flag_list.hpp"
@@ -877,7 +878,7 @@ static int read_ability(std::vector<player_race_ability_type> *abilities, char *
 /**
  * Find a power by its name
  */
-static boost::optional<int> find_power_idx(const char *name)
+static std::optional<int> find_power_idx(const char *name)
 {
 	for (auto const &entry: game->powers)
 	{
@@ -889,7 +890,7 @@ static boost::optional<int> find_power_idx(const char *name)
 		}
 	}
 
-	return boost::none;
+	return std::nullopt;
 }
 
 
@@ -1424,7 +1425,7 @@ errr init_player_info_txt(FILE *fp)
 
 			/* Split suffix into fields */
 			std::vector<std::string> fields;
-			boost::algorithm::split(fields, suffix, boost::is_any_of(":"));
+			split(fields, suffix, ':');
 
 			/* Make sure we have two fields */
 			if (fields.size() < 2) return (1);
@@ -1980,7 +1981,7 @@ static int grab_one_feature_flag(const char *what, feature_flag_set *flags)
 #define FF(tier, index, name) \
 	if (equals(what, #name)) \
 	{ \
-	        *flags |= BOOST_PP_CAT(FF_,name); \
+	        *flags |= FF_##name; \
 	        return 0; \
         };
 #include "feature_flag_list.hpp"
@@ -3391,7 +3392,7 @@ static ego_flag_set lookup_ego_flag(const char *what)
 #define ETR(tier, index, name) \
 	if (equals(what, #name)) \
 	{ \
-	        return BOOST_PP_CAT(ETR_,name); \
+	        return ETR_##name; \
         };
 #include "ego_flag_list.hpp"
 #undef ETR
@@ -3979,7 +3980,7 @@ static errr grab_monster_race_flag(monster_race_flag_set *flags, const char *wha
 #define RF(tier, index, name) \
 	if (equals(what, #name)) \
 	{ \
-		*flags |= BOOST_PP_CAT(RF_,name); \
+		*flags |= RF_##name; \
 		return 0; \
 	};
 #include "monster_race_flag_list.hpp"
@@ -5252,7 +5253,7 @@ errr init_d_info_txt(FILE *fp)
 			/* Split into fields */
 			std::string buf_s(buf + 2);
 			std::vector<std::string> fields;
-			boost::algorithm::split(fields, buf_s, boost::is_any_of(":"));
+			split(fields, buf_s, ':');
 
 			// Get the depth; depths are relative to the first floor
 			// of the dungeon. This is consistent with the handling of
@@ -5343,7 +5344,7 @@ static errr grab_one_store_flag(store_flag_set *flags, const char *what)
 {
 #define STF(tier, index, name) \
 	if (equals(what, #name)) { \
-	        *flags |= BOOST_PP_CAT(STF_,name); \
+	        *flags |= STF_##name; \
 	        return 0; \
         }
 #include "store_flag_list.hpp"

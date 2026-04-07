@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 2003 DarkGod
  *
@@ -38,17 +39,17 @@
 #include "z-form.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/filesystem.hpp>
+
+#include <filesystem>
 #include <cassert>
 #include <chrono>
 #include <thread>
 
-using boost::algorithm::equals;
+
 using std::this_thread::sleep_for;
 using std::chrono::milliseconds;
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 /*
  * Check and create if needed the directory dirpath
@@ -62,7 +63,7 @@ bool private_check_user_directory(const char *dirpath)
 	}
 	else
 	{
-		boost::system::error_code ec;
+		std::error_code ec;
 		fs::create_directory(dirpath, ec);
 		return !ec;
 	}

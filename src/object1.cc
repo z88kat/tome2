@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -53,13 +54,13 @@
 #include "z-form.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/join.hpp>
-#include <boost/algorithm/string/predicate.hpp>
+
+
 #include <cassert>
 #include <fmt/format.h>
 #include <utility>
 
-using boost::starts_with;
+
 
 static void apply_flags_set(s16b a_idx, s16b set_idx, object_flag_set *f);
 
@@ -574,7 +575,7 @@ object_flag_set object_flags(object_type const *o_ptr)
 }
 
 /* Return object granted power */
-boost::optional<int> object_power(object_type *o_ptr)
+std::optional<int> object_power(object_type *o_ptr)
 {
 	auto const &a_info = game->edit_data.a_info;
 	auto const &e_info = game->edit_data.e_info;
@@ -1699,7 +1700,7 @@ static std::string object_desc_aux(object_type const *o_ptr, int pref, int mode)
 		/* Append the inscription, if any */
 		if (!inscrip.empty())
 		{
-			auto inscrip_str = boost::algorithm::join(inscrip, ", ");
+			auto inscrip_str = join(inscrip, ", ");
 
 			/* Make sure we don't exceed 75 characters */
 			t.resize(std::min<std::size_t>(t.size(), 75));

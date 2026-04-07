@@ -36,17 +36,17 @@ int get_flevel()
 	return current_level_data().flevel;
 }
 
-boost::optional<std::string> get_dungeon_save_extension()
+std::optional<std::string> get_dungeon_save_extension()
 {
 	return current_level_data().save_extension;
 }
 
-boost::optional<std::string> get_dungeon_map_name()
+std::optional<std::string> get_dungeon_map_name()
 {
 	return current_level_data().map_name;
 }
 
-boost::optional<std::string> get_dungeon_name()
+std::optional<std::string> get_dungeon_name()
 {
 	return current_level_data().name;
 }
@@ -56,7 +56,7 @@ dungeon_flag_set get_level_flags()
 	return current_level_data().flags;
 }
 
-boost::optional<std::string> get_level_description()
+std::optional<std::string> get_level_description()
 {
 	return current_level_data().description;
 }

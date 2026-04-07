@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /* File: util.c */
 
 /* Purpose: Angband utilities -BEN- */
@@ -23,10 +24,11 @@
 #include "xtra1.hpp"
 #include "z-form.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <chrono>
 #include <cstdio>
 #include <fcntl.h>
+#include <unistd.h>
 #include <fmt/format.h>
 #include <sstream>
 #include <thread>
@@ -35,9 +37,9 @@
 #include <pwd.h>
 #endif
 
-using boost::algorithm::iequals;
-using boost::algorithm::equals;
-using boost::algorithm::starts_with;
+
+
+
 using std::this_thread::sleep_for;
 using std::chrono::milliseconds;
 

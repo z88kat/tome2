@@ -77,7 +77,7 @@
 #include "z-rand.hpp"
 #include "z-util.hpp"
 
-#include <boost/filesystem.hpp>
+#include <filesystem>
 #include <cassert>
 
 #define TY_CURSE_CHANCE 100
@@ -743,19 +743,19 @@ static void process_lasting_effects()
 				}
 				else
 				{
-					cave[j][i].maybe_effect = boost::none;
+					cave[j][i].maybe_effect = std::nullopt;
 				}
 
 				if ((e_ptr->flags & EFF_WAVE) && !(e_ptr->flags & EFF_LAST))
 				{
 					if (distance(e_ptr->cy, e_ptr->cx, j, i) < e_ptr->rad - 1)
 					{
-						cave[j][i].maybe_effect = boost::none;
+						cave[j][i].maybe_effect = std::nullopt;
 					}
 				}
 				else if ((e_ptr->flags & EFF_STORM) && !(e_ptr->flags & EFF_LAST))
 				{
-					cave[j][i].maybe_effect = boost::none;
+					cave[j][i].maybe_effect = std::nullopt;
 				}
 
 				lite_spot(j, i);
@@ -4554,7 +4554,7 @@ static void load_all_pref_files()
 	 * to merge the two files since that would require tracking
 	 * the providence of rules and such to avoid the same
 	 * duplication problems as caused when saving macros/keymaps. */
-	boost::filesystem::path userDirectory(ANGBAND_DIR_USER);
+	std::filesystem::path userDirectory(ANGBAND_DIR_USER);
 	if (automatizer_load(userDirectory / (player_name + ".atm")))
 	{
 		// Done

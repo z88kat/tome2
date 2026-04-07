@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1997 Ben Harrison, and others
  *
@@ -21,10 +22,10 @@
 #include "z-form.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::equals;
-using boost::algorithm::ends_with;
+
+
+
 
 /*
  * A hook for "quit()".

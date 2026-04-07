@@ -6,7 +6,7 @@
 #include "object_type_fwd.hpp"
 #include "obj_theme_fwd.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 
 typedef enum { OPTIMIZE, NO_OPTIMIZE } optimize_flag;
 typedef enum { DESCRIBE, NO_DESCRIBE } describe_flag;
@@ -52,7 +52,7 @@ s16b lookup_kind(int tval, int sval);
 void object_wipe(object_type *o_ptr);
 void object_prep(object_type *o_ptr, int k_idx);
 void object_copy(object_type *o_ptr, object_type *j_ptr);
-void apply_magic(object_type *o_ptr, int lev, bool okay, bool good, bool great, boost::optional<int> force_power = boost::none);
+void apply_magic(object_type *o_ptr, int lev, bool okay, bool good, bool great, std::optional<int> force_power = std::nullopt);
 bool make_object(object_type *j_ptr, bool good, bool great, obj_theme const &theme);
 void place_object(int y, int x, bool good, bool great, int where);
 bool make_gold(object_type *j_ptr);

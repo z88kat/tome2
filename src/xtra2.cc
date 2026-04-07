@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -59,13 +60,13 @@
 #include "xtra1.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 #include <fmt/format.h>
 #include <type_traits>
 
-using boost::algorithm::iequals;
-using boost::algorithm::starts_with;
+
+
 
 static void corrupt_corrupted();
 

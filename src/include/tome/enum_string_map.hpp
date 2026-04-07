@@ -1,37 +1,40 @@
 #pragma once
 
-#include <boost/bimap.hpp>
-#include <boost/noncopyable.hpp>
-#include <string>
 #include <cassert>
+#include <map>
+#include <string>
 
 /**
  * Bidirectional mapping between enumerated values
  * and strings.
  */
 template <class E>
-class EnumStringMap : boost::noncopyable {
+class EnumStringMap {
+
+public:
+	EnumStringMap(EnumStringMap const &) = delete;
+	EnumStringMap &operator=(EnumStringMap const &) = delete;
 
 private:
-	typedef boost::bimap< E, std::string > bimap_type;
-	typedef typename bimap_type::value_type value_type;
-
-	bimap_type bimap;
+	std::map<E, std::string> m_to_string;
+	std::map<std::string, E> m_to_enum;
 
 public:
 	explicit EnumStringMap(std::initializer_list< std::pair<E, const char *> > in) {
 		for (auto es : in)
 		{
-			bimap.insert(value_type(es.first, es.second));
+			m_to_string.emplace(es.first, es.second);
+			m_to_enum.emplace(es.second, es.first);
 		}
 		// Sanity check that there were no
 		// duplicate mappings.
-		assert(bimap.size() == in.size());
+		assert(m_to_string.size() == in.size());
+		assert(m_to_enum.size() == in.size());
 	}
 
 	const char *stringify(E e) const {
-		auto i = bimap.left.find(e);
-		assert(i != bimap.left.end() && "Missing mapping for enumerated value");
+		auto i = m_to_string.find(e);
+		assert(i != m_to_string.end() && "Missing mapping for enumerated value");
 		return i->second.c_str();
 	}
 
@@ -51,8 +54,8 @@ public:
 	}
 
 	bool parse(const char *s, E *e) const {
-		auto i = bimap.right.find(s);
-		if (i == bimap.right.end())
+		auto i = m_to_enum.find(s);
+		if (i == m_to_enum.end())
 		{
 			return false;
 		}

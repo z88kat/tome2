@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /* File: main-x11.c */
 
 /*
@@ -117,10 +118,10 @@
 #include <climits>
 
 #include <sys/time.h>
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::equals;
-using boost::algorithm::starts_with;
+
+
+
 
 #define FORCELOWER(A)  ((isupper((A))) ? tolower((A)) : (A))
 

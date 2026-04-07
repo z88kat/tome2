@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -56,14 +57,14 @@
 #include "z-util.hpp"
 
 #include <algorithm>
-#include <boost/algorithm/string/predicate.hpp>
-#include <boost/filesystem.hpp>
+
+#include <filesystem>
 #include <fcntl.h>
 #include <fmt/format.h>
 #include <numeric>
 #include <string>
 
-using boost::algorithm::equals;
+
 
 /*
  * How often the autoroller will update the display and pause
@@ -3147,7 +3148,7 @@ savefile_try_again:
 			// If the savefile already exists, we do *NOT* want to
 			// create a new game, so we'll need to return false for
 			// that.
-			if (boost::filesystem::exists(name_file_save()))
+			if (std::filesystem::exists(name_file_save()))
 			{
 				// Show a message so user doesn't get confused.
 				msg_print(NULL);

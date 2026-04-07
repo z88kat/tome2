@@ -1,6 +1,7 @@
 #pragma once
 
-#include <boost/multi_array.hpp>
+#include <cstddef>
+#include <vector>
 
 /**
  * 2D grid of T's.
@@ -9,7 +10,9 @@ template <typename T>
 struct grid {
 
 private:
-	boost::multi_array<T, 2> impl;
+	std::vector<T> m_data;
+	std::size_t m_width  = 0;
+	std::size_t m_height = 0;
 
 public:
 	/**
@@ -17,7 +20,7 @@ public:
 	 */
 	T &operator ()(std::size_t x, std::size_t y)
 	{
-		return impl[y][x];
+		return m_data[y * m_width + x];
 	}
 
 	/**
@@ -25,16 +28,17 @@ public:
 	 */
 	T const &operator ()(std::size_t x, std::size_t y) const
 	{
-		return impl[y][x];
+		return m_data[y * m_width + x];
 	}
 
 	/**
-	 * Resize grid. There is no guarantee whether
-	 * existing elements will be preserved or not.
+	 * Resize grid. Existing elements are not preserved.
 	 */
-	void resize(std::size_t width, std::size_t height)
+	void resize(std::size_t new_width, std::size_t new_height)
 	{
-		impl.resize(boost::extents[height][width]);
+		m_width  = new_width;
+		m_height = new_height;
+		m_data.assign(m_width * m_height, T{});
 	}
 
 	/**
@@ -42,7 +46,7 @@ public:
 	 */
 	std::size_t width() const
 	{
-		return impl.shape()[1];
+		return m_width;
 	}
 
 	/**
@@ -50,23 +54,23 @@ public:
 	 */
 	std::size_t height() const
 	{
-		return impl.shape()[0];
+		return m_height;
 	}
 
 	/**
 	 * Set width. Same caveats apply as for resize().
 	 */
-	void width(std::size_t width)
+	void width(std::size_t w)
 	{
-		resize(width, height());
+		resize(w, m_height);
 	}
 
 	/**
 	 * Set height. Same caveats apply as for resize().
 	 */
-	void height(std::size_t height)
+	void height(std::size_t h)
 	{
-		resize(width(), height);
+		resize(m_width, h);
 	}
 
 };

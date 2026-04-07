@@ -197,7 +197,7 @@ static void automatizer_save_rules()
 	// Build the filename
 	path_build(buf, 1024, ANGBAND_DIR_USER, name.c_str());
 		
-	if (boost::filesystem::exists(buf))
+	if (std::filesystem::exists(buf))
 	{
 		show_message("File exists, continue? [y/n]");
 		ch = inkey();
@@ -571,12 +571,12 @@ void automatizer_init()
  * Load automatizer file. Returns true iff automatizer
  * rules were loaded successfully.
  */
-bool automatizer_load(boost::filesystem::path const &path)
+bool automatizer_load(std::filesystem::path const &path)
 {
 	assert(automatizer != NULL);
 
 	// Does the path exist?
-	if (!boost::filesystem::exists(path))
+	if (!std::filesystem::exists(path))
 	{
 		return false; // Not fatal; just skip
 	}

@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 #include "init2.hpp"
 
 #include "ability_type.hpp"
@@ -55,13 +56,13 @@
 #include "z-form.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 #include <fcntl.h>
 #include <fmt/format.h>
 #include <type_traits>
 
-using boost::algorithm::equals;
+
 
 /*
  * This file is used to initialise various variables and arrays for the
@@ -457,7 +458,7 @@ namespace {
 template<typename T> static errr init_x_info() {
 
 	/* Build the filename */
-	boost::filesystem::path path(ANGBAND_DIR_EDIT);
+	std::filesystem::path path(ANGBAND_DIR_EDIT);
 	path /= T::name;
 
 	/* Open the file */
@@ -636,7 +637,7 @@ static errr init_other()
 	max_dlv = make_array<s16b>(d_info.size());
 
 	/* Allocate level markers */
-	level_markers.resize(boost::extents[MAX_DUNGEON_DEPTH][d_info.size()]);
+	level_markers.assign(MAX_DUNGEON_DEPTH, std::vector<level_marker>(d_info.size()));
 
 	/* Allocate and wipe each line of the cave */
 	cave = new cave_type *[MAX_HGT];

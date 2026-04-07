@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -57,7 +58,7 @@
 #include "z-rand.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string.hpp>
+
 #include <iostream>
 #include <fcntl.h>
 #include <fmt/format.h>
@@ -66,11 +67,11 @@
 #include <memory>
 #include <unordered_set>
 
-using boost::algorithm::equals;
-using boost::algorithm::trim_right;
-using boost::algorithm::starts_with;
 
-namespace fs = boost::filesystem;
+
+
+
+namespace fs = std::filesystem;
 
 std::string name_file_note(std::string_view sv)
 {
@@ -104,7 +105,7 @@ std::string name_file_save(std::string_view sv)
 	return buf;
 }
 
-boost::filesystem::path name_file_dungeon_save(std::string const &ext)
+std::filesystem::path name_file_dungeon_save(std::string const &ext)
 {
 	fs::path p(name_file_save());
 	return p.replace_extension(ext);
@@ -3456,7 +3457,9 @@ static bool show_file_aux(const char *name, const char *what, int line)
 void show_string(const std::string &lines, const char *title, int line)
 {
 	// Temporary file
-	auto const file_name = fs::unique_path().string();
+	static unsigned s_tmp_counter = 0;
+	auto const file_name = (fs::temp_directory_path() /
+		fmt::format("tome2_tmp_{}", ++s_tmp_counter)).string();
 
 	// Open a new file
 	std::ofstream ofs(file_name);

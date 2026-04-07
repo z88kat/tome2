@@ -1,7 +1,7 @@
 #ifndef H_8a10111d_64a1_4af9_a85b_24ec8922d3fa
 #define H_8a10111d_64a1_4af9_a85b_24ec8922d3fa
 
-#include <boost/noncopyable.hpp>
+
 #include <deque>
 
 #include "tome/squelch/condition_fwd.hpp"
@@ -11,8 +11,13 @@ namespace squelch {
 /**
  * Cursor which maintains selected condition(s)
  */
-class Cursor : public boost::noncopyable
+class Cursor
 {
+public:
+	Cursor() = default;
+	Cursor(Cursor const &) = delete;
+	Cursor &operator=(Cursor const &) = delete;
+
 public:
 	bool is_selected(Condition const *condition) const;
 

@@ -24,8 +24,12 @@ EnumStringMap<action_type> &action_mapping();
 /**
  * Rules are the representation of "when condition X is true, do Y".
  */
-class Rule : public boost::noncopyable
+class Rule
 {
+public:
+	Rule(Rule const &) = delete;
+	Rule &operator=(Rule const &) = delete;
+
 public:
 	Rule(std::string name,
 	     action_type action,

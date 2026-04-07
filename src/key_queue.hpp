@@ -2,16 +2,23 @@
 
 #include "key_queue_fwd.hpp"
 
-#include <boost/circular_buffer.hpp>
+#include <cassert>
+#include <cstddef>
+#include <vector>
 
 
 /*
- * Low-level key queue handling.
+ * Low-level key queue handling — fixed-capacity circular buffer.
  */
 class key_queue {
 
 private:
-	boost::circular_buffer<char> m_buffer;
+	std::vector<char> m_buf;
+	std::size_t m_capacity;
+	std::size_t m_head = 0;  // index of oldest element
+	std::size_t m_size = 0;
+
+	std::size_t next(std::size_t i) const { return (i + 1) % m_capacity; }
 
 public:
 	/*
@@ -24,53 +31,60 @@ public:
 
 public:
 	explicit key_queue(std::size_t k)
-		: m_buffer(k)
+		: m_buf(k), m_capacity(k)
 	{
 	}
 
 	void clear()
 	{
-		m_buffer.clear();
+		m_head = 0;
+		m_size = 0;
 	}
+
+	bool full() const { return m_size == m_capacity; }
 
 	void push_back(char c)
 	{
-		if (m_buffer.full())
+		if (full())
 		{
 			return; // Ignore
 		}
 
-		m_buffer.push_back(c);
+		m_buf[(m_head + m_size) % m_capacity] = c;
+		++m_size;
 	}
 
 	push_result_t push_front(char k)
 	{
-		if (m_buffer.full())
+		if (full())
 		{
 			return push_result_t::QUEUE_OVERFLOW;
 		}
 
-		m_buffer.push_front(k);
+		m_head = (m_head + m_capacity - 1) % m_capacity;
+		m_buf[m_head] = k;
+		++m_size;
 		return push_result_t::OK;
 	}
 
 	char front() const
 	{
 		assert(!empty());
-		return m_buffer.front();
+		return m_buf[m_head];
 	}
 
 	char pop_front()
 	{
 		assert(!empty());
-		auto ch = m_buffer.front();
-		m_buffer.pop_front();
+		char ch = m_buf[m_head];
+		m_head = next(m_head);
+		--m_size;
 		return ch;
 	}
 
 	bool empty() const
 	{
-		return m_buffer.empty();
+		return m_size == 0;
 	}
 
 };

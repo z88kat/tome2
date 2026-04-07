@@ -1114,7 +1114,7 @@ static void print_power_batch(std::vector<int> const &power_idxs, int start, int
  * List powers and ask to pick one. 
  */
 
-static boost::optional<int> select_power()
+static std::optional<int> select_power()
 {
 	// Find selectable power indexes
 	std::vector<int> power_idxs;
@@ -1130,7 +1130,7 @@ static boost::optional<int> select_power()
 	if (power_idxs.empty())
 	{
 		msg_print("You don't have any special powers.");
-		return boost::none;
+		return std::nullopt;
 	}
 	else
 	{
@@ -1139,7 +1139,7 @@ static boost::optional<int> select_power()
 		// Save
 		screen_save_no_flush();
 		// Loop until we get a result.
-		boost::optional<int> result;
+		std::optional<int> result;
 		while (true)
 		{
 			print_power_batch(power_idxs, start, max);

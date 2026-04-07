@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 2001 DarkGod
  * Copyright (c) 2012 Bardur Arantsson
@@ -25,9 +26,9 @@
 #include "variable.hpp"
 #include "z-term.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::equals;
+
+
 
 #define DESC_MAX 14
 #define TRIGGERED_HELP_MAX 16

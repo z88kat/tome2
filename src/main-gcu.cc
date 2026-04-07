@@ -44,10 +44,12 @@
 #include "z-util.hpp"
 
 #include <fcntl.h>
-#include <boost/algorithm/string/predicate.hpp>
+#include <unistd.h>
+#include "string_util.hpp"
+
 #include <climits>
 
-using boost::algorithm::starts_with;
+
 
 /*
  * Hack -- play games with "bool" and "term"

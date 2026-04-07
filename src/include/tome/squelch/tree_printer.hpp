@@ -1,7 +1,7 @@
 #ifndef H_3d6cc652_c674_4a84_911d_e8ec35cc992a
 #define H_3d6cc652_c674_4a84_911d_e8ec35cc992a
 
-#include <boost/noncopyable.hpp>
+
 #include <cstdint>
 #include <string>
 
@@ -10,8 +10,12 @@ namespace squelch {
 /**
  * Printing trees.
  */
-class TreePrinter : boost::noncopyable
+class TreePrinter
 {
+public:
+	TreePrinter(TreePrinter const &) = delete;
+	TreePrinter &operator=(TreePrinter const &) = delete;
+
 public:
 	TreePrinter();
 

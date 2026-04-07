@@ -4,19 +4,28 @@ ToME is a [rogue-like](https://en.wikipedia.org/wiki/Roguelike) game.
 
 For help playing the game, see the [Player Guide](PLAYER_GUIDE.md).
 
+For a history of changes, see the [Change Log](doc/changes.txt).
+
 ## Getting Started
 
 ### Prerequisites
 
 See below for specific distribution-specific hints, if needed.
 
-You will need to have the following libraries installed on your system
-somewhere where CMake can find them:
+You will need the following tools installed:
 
-- [Boost](https://www.boost.org/)
+- **CMake** 3.15 or later
+- A **C++17**-capable compiler (GCC 8+, Clang 7+, or Apple Clang from Xcode 10+)
 
-Version requirements may vary somewhat, but usually you should be
-aiming for having at least a **recent** version of the above libraries.
+The following libraries are fetched automatically by CMake at configure
+time via [CPM](https://github.com/cpm-cmake/CPM.cmake) if not already
+present on your system:
+
+- [fmtlib](https://github.com/fmtlib/fmt)
+- [jsoncons](https://github.com/danielaparker/jsoncons)
+- [PCG random](https://github.com/imneme/pcg-cpp)
+
+No other third-party libraries are required.
 
 ### Option 1: Running In-Place
 
@@ -56,18 +65,17 @@ installed in the system-specific location.
 
 ## Compiling on Ubuntu
 
-To compile on an Ubuntu install, you'll need at least the 
+To compile on an Ubuntu install, you'll need at least the
 
 - `cmake`
 - `build-essential`
-- `libboost-all-dev`
 
-If the following are not installed, they'll be downloaded automatically:
+packages. The following will be downloaded automatically if not already
+installed:
+
 - `libpcg-cpp-dev`
 - `libjsoncons-dev`
 - `libfmt-dev`
-
-packages.
 
 Note for package maintainers: `-DCPM_LOCAL_PACKAGES_ONLY=yes -DUSE_SYSTEM_PCG_RANDOM=yes` will avoid downloading deps automatically.
 See [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) for more details.

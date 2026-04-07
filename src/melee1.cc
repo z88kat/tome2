@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -34,9 +35,9 @@
 #include "z-rand.hpp"
 #include "z-term.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::iequals;
+
+
 
 /*
  * Critical blow.  All hits that do 95% of total possible damage,

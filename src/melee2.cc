@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -53,10 +54,10 @@
 #include "z-term.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::equals;
+
 
 #define SPEAK_CHANCE 8
 #define GRINDNOISE 20

@@ -5,7 +5,7 @@
 #include "object_flag_set.hpp"
 
 #include <array>
-#include <boost/optional.hpp>
+#include <optional>
 #include <string>
 
 /*
@@ -52,7 +52,7 @@ struct ego_item_type
 	object_flag_set need_flags;
 	object_flag_set forbid_flags;
 
-	boost::optional<int> power;                        /* Power granted, if any */
+	std::optional<int> power;                        /* Power granted, if any */
 
 public:
 	ego_item_type()

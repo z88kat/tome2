@@ -1,24 +1,24 @@
 #pragma once
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <jsoncons/json.hpp>
 #include <string>
 
 namespace squelch {
 
 template <class T>
-boost::optional<T> get_optional(jsoncons::json const &json, std::string const &key)
+std::optional<T> get_optional(jsoncons::json const &json, std::string const &key)
 {
 	if (!json.contains(key))
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 
 	auto value = json.at(key);
 
 	if (!value.is<T>())
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 
 	return value.as<T>();

@@ -18,7 +18,6 @@
 #include "timer_type_fwd.hpp"
 #include "wilderness_map.hpp"
 
-#include <boost/multi_array.hpp>
 #include <unordered_map>
 
 /**
@@ -104,7 +103,7 @@ struct Game {
 	/**
 	 * Level markers for 'special' levels.
 	 */
-	boost::multi_array<level_marker, 2> level_markers { };
+	std::vector<std::vector<level_marker>> level_markers;
 
 	/**
 	 * Dungeon flags.

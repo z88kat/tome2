@@ -1,9 +1,10 @@
+#include "string_util.hpp"
 #include "z-util.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::equals;
+
 
 /**
  * Captialize letter

@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 #include "mimic.hpp"
 
 #include "game.hpp"
@@ -9,10 +10,10 @@
 #include "xtra1.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::equals;
+
 
 /**
  * Mimicry forms

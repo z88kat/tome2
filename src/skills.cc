@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 2001 DarkGod
  *
@@ -40,7 +41,7 @@
 #include "z-rand.hpp"
 
 #include <algorithm>
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 #include <cmath>
 #include <fmt/format.h>
@@ -48,7 +49,7 @@
 #include <vector>
 #include <tuple>
 
-using boost::algorithm::iequals;
+
 
 /*
  * Advance the skill point of the skill specified by i and

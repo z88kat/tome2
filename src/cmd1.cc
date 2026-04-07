@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -50,9 +51,9 @@
 #include "z-form.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
 
-using boost::algorithm::equals;
+
+
 
 #define MAX_VAMPIRIC_DRAIN 100
 

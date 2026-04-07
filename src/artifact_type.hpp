@@ -3,7 +3,7 @@
 #include "h-basic.hpp"
 #include "object_flag_set.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 
 /**
  * Artifact descriptor.
@@ -45,7 +45,7 @@ struct artifact_type
 
 	byte cur_num = 0;                        /* Number created (0 or 1) */
 
-	boost::optional<int> power;              /* Power granted, if any */
+	std::optional<int> power;              /* Power granted, if any */
 
 	s16b set = 0;                            /* Which set does it belong it, if any? */
 

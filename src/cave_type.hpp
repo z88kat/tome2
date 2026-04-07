@@ -2,7 +2,7 @@
 
 #include "h-basic.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <cassert>
 #include <vector>
 
@@ -51,7 +51,7 @@ struct cave_type
 	byte cost = 0;                         /* Hack -- cost of flowing */
 	byte when = 0;                         /* Hack -- when cost was computed */
 
-	boost::optional<s16b> maybe_effect { }; /* The lasting effects */
+	std::optional<s16b> maybe_effect { }; /* The lasting effects */
 
 	/**
 	 * @brief wipe the object's state

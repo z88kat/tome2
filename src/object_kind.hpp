@@ -3,7 +3,7 @@
 #include "h-basic.hpp"
 #include "object_flag_set.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <string>
 
 /**
@@ -74,7 +74,7 @@ struct object_kind
 	byte bsval = 0;                          /* Become Object sub type */
 	bool artifact = 0;                      /* Is it a normal artifact(already generated) */
 
-	boost::optional<int> power;              /* Power granted */
+	std::optional<int> power;              /* Power granted */
 
 public:
 	explicit object_kind(s16b idx_)

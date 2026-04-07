@@ -36,13 +36,13 @@
 #include "xtra2.hpp"
 #include "z-rand.hpp"
 
-#include <boost/filesystem.hpp>
+#include <filesystem>
 #include <cassert>
 #include <fcntl.h>
 #include <fmt/format.h>
 #include <memory>
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 static u32b vernum; /* Version flag */
 static FILE *fff; 	/* Local savefile ptr */
@@ -446,7 +446,7 @@ static void do_seed(seed_t *seed, ls_flag_t flag)
 }
 
 template <typename T, typename F>
-static void do_boost_optional(boost::optional<T> &maybe_v, ls_flag_t flag, F f)
+static void do_optional(std::optional<T> &maybe_v, ls_flag_t flag, F f)
 {
 	if (flag == ls_flag_t::SAVE)
 	{
@@ -474,7 +474,7 @@ static void do_boost_optional(boost::optional<T> &maybe_v, ls_flag_t flag, F f)
 		while (n-- > 0)
 		{
 			maybe_v.emplace(); // Default-construct in place
-			f(&maybe_v.get(), flag);
+			f(&(*maybe_v), flag);
 		}
 	}
 }
@@ -1297,7 +1297,7 @@ static void do_cave_type(cave_type *c_ptr, ls_flag_t flag)
 	do_s16b(&c_ptr->special2, flag);
 	do_s16b(&c_ptr->inscription, flag);
 	do_byte(&c_ptr->mana, flag);
-	do_boost_optional(c_ptr->maybe_effect, flag, do_s16b);
+	do_optional(c_ptr->maybe_effect, flag, do_s16b);
 }
 
 static void do_grid(ls_flag_t flag)

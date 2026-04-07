@@ -1185,7 +1185,7 @@ static bool kind_is_storeok(object_kind const *k_ptr)
 
 namespace { // anonymous
 
-struct is_artifact_p : public boost::static_visitor<bool> {
+struct is_artifact_p  {
 
 	bool operator ()(store_item_filter_by_k_idx f) const
 	{
@@ -1199,7 +1199,7 @@ struct is_artifact_p : public boost::static_visitor<bool> {
 	}
 };
 
-class choose_k_idx : public boost::static_visitor<int> {
+class choose_k_idx  {
 
 	int m_level;
 
@@ -1357,7 +1357,7 @@ static void store_create()
 			auto chance = item.chance;
 
 			/* Don't allow k_info artifacts */
-			if (boost::apply_visitor(is_artifact_p(), filter))
+			if (std::visit(is_artifact_p(), filter))
 			{
 				continue;
 			}
@@ -1369,7 +1369,7 @@ static void store_create()
 			level = return_level();
 
 			/* Choose the k_info index */
-			k_idx = boost::apply_visitor(choose_k_idx(level), filter);
+			k_idx = std::visit(choose_k_idx(level), filter);
 			if (k_idx <= 0)
 			{
 				continue;

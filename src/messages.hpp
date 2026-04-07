@@ -3,15 +3,18 @@
 #include "h-basic.hpp"
 #include "message.hpp"
 
-#include <boost/circular_buffer.hpp>
+#include <cassert>
+#include <deque>
+#include <cstddef>
 
 /**
- * Game message buffer
+ * Game message buffer — fixed-capacity circular buffer backed by a deque.
  */
 class Messages final {
 
 private:
-	boost::circular_buffer<message> buffer;
+	std::deque<message> m_buffer;
+	std::size_t m_capacity;
 
 public:
 
@@ -20,7 +23,7 @@ public:
 	 * number of messages.
 	 */
 	explicit Messages(std::size_t n)
-		: buffer(n)
+		: m_capacity(n)
 	{
 	}
 

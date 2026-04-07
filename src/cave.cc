@@ -4196,7 +4196,7 @@ int is_quest(int level)
 /**
  * Create a new lasting effect.
  */
-boost::optional<s16b> new_effect(int type, int dam, int time, int cy, int cx, int rad, s32b flags)
+std::optional<s16b> new_effect(int type, int dam, int time, int cy, int cx, int rad, s32b flags)
 {
 	auto &lasting_effects = game->lasting_effects;
 	size_t max_lasting_effects = std::size(game->lasting_effects);
@@ -4211,7 +4211,7 @@ boost::optional<s16b> new_effect(int type, int dam, int time, int cy, int cx, in
 	}
 	if (ei == max_lasting_effects)
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 
 	lasting_effects[ei].type = type;

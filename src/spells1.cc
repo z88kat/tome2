@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -50,12 +51,12 @@
 #include "z-rand.hpp"
 #include "z-term.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <chrono>
 #include <fmt/format.h>
 #include <thread>
 
-using boost::algorithm::starts_with;
+
 using std::this_thread::sleep_for;
 using std::chrono::milliseconds;
 
@@ -8224,7 +8225,7 @@ bool project(int who, int rad, int y, int x, int dam, int typ, int flg)
 		dist = 0;
 
 		/* Which effect? */
-		boost::optional<s16b> maybe_effect = boost::none;
+		std::optional<s16b> maybe_effect = std::nullopt;
 
 		/* Effect ? */
 		if (flg & PROJECT_STAY)

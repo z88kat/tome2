@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -55,22 +56,22 @@
 #include "z-form.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::iequals;
+
 
 /*
  * General function to find an item by its name
  */
 static select_by_name_t select_object_by_name(std::string const &prompt)
 {
-	return [=](object_filter_t const &filter) -> boost::optional<int> {
+	return [=](object_filter_t const &filter) -> std::optional<int> {
 		// Ask for the name of the object we want to select
 		char buf[80] = "";
 		if (!get_string(prompt.c_str(), buf, 79))
 		{
-			return boost::none;
+			return std::nullopt;
 		}
 		// Named objects must be in the inventory
 		for (size_t i = 0; i < INVEN_TOTAL; i++)
@@ -96,7 +97,7 @@ static select_by_name_t select_object_by_name(std::string const &prompt)
 			}
 		}
 		// No match
-		return boost::none;
+		return std::nullopt;
 	};
 }
 

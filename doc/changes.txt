@@ -1,3 +1,24 @@
+T.o.M.E 2.5.0 (ah)
+
+Build:
+
+- Remove Boost dependency entirely. Replaced with standard C++17/STL:
+  - boost::optional         → std::optional
+  - boost::filesystem       → std::filesystem
+  - boost::variant          → std::variant
+  - boost::noncopyable      → deleted copy constructor/assignment
+  - boost::algorithm::string → custom string_util.hpp helpers
+  - boost::bimap            → two std::map instances (EnumStringMap)
+  - boost::circular_buffer  → std::deque (Messages) / std::vector ring buffer (key_queue)
+  - boost::multi_array      → std::vector<std::vector<T>> (level_markers) / flat std::vector (grid)
+  - BOOST_PP_CAT            → ## token-paste operator
+- Fix bug: object_colors_0() was missing static on singleton pointer,
+  causing a new allocation on every call.
+- Add macOS build documentation to README.
+- Add link to change log in README.
+- Bump minimum CMake requirement to 3.15.
+
+
 T.o.M.E 2.4.0 (ah)
 
 Game:

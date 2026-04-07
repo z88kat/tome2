@@ -2,7 +2,7 @@
 
 #include "h-basic.hpp"
 
-#include <boost/variant.hpp>
+#include <variant>
 
 struct store_item_filter_by_k_idx
 {
@@ -14,7 +14,7 @@ struct store_item_filter_by_tval
 	s16b tval = -1;
 };
 
-using store_item_filter_t = boost::variant<store_item_filter_by_k_idx, store_item_filter_by_tval>;
+using store_item_filter_t = std::variant<store_item_filter_by_k_idx, store_item_filter_by_tval>;
 
 struct store_item
 {

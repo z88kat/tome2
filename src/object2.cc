@@ -3721,7 +3721,7 @@ void add_random_ego_flag(object_type *o_ptr, ego_flag_set const &fego, bool *lim
  * "good" and "great" arguments are false.  As a total hack, if "great" is
  * true, then the item gets 3 extra "attempts" to become an artifact.
  */
-void apply_magic(object_type *o_ptr, int lev, bool okay, bool good, bool great, boost::optional<int> force_power)
+void apply_magic(object_type *o_ptr, int lev, bool okay, bool good, bool great, std::optional<int> force_power)
 {
 	auto &a_info = game->edit_data.a_info;
 	auto const &e_info = game->edit_data.e_info;
@@ -5458,7 +5458,7 @@ bool inven_carry_okay(object_type const *o_ptr)
 /**
  * Find an empty slot in the player's inventory.
  */
-static boost::optional<int> find_empty_slot()
+static std::optional<int> find_empty_slot()
 {
 	for (int i = 0; i < INVEN_PACK; i++)
 	{
@@ -5470,7 +5470,7 @@ static boost::optional<int> find_empty_slot()
 		}
 	}
 
-	return boost::none;
+	return std::nullopt;
 }
 
 /*
@@ -5545,7 +5545,7 @@ s16b inven_carry(object_type *o_ptr, bool final)
 
 	/* Find an empty slot */
 	auto i = find_empty_slot()
-		.get_value_or(INVEN_PACK);
+		.value_or(INVEN_PACK);
 
 	/* Hack -- pre-reorder the pack */
 	if (!final && (i < INVEN_PACK))

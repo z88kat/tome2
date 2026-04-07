@@ -2,7 +2,7 @@
 
 #include "dungeon_flag_set.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <string>
 #include <unordered_map>
 
@@ -34,23 +34,23 @@ struct level_data
 	/**
 	 * Save file extension to use for this level, if any.
 	 */
-	boost::optional<std::string> save_extension;
+	std::optional<std::string> save_extension;
 
 	/**
 	 * Get map name for special levels.
 	 */
-	boost::optional<std::string> map_name;
+	std::optional<std::string> map_name;
 
 	/**
 	 * Short name for special levels, replaces
 	 * the regular depth display.
 	 */
-	boost::optional<std::string> name;
+	std::optional<std::string> name;
 
 	/**
 	 * One-line description for special levels,
 	 * replaces the level feeling.
 	 */
-	boost::optional<std::string> description;
+	std::optional<std::string> description;
 
 };

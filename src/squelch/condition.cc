@@ -1,8 +1,9 @@
+#include "string_util.hpp"
 #include "tome/squelch/condition_fwd.hpp"
 #include "tome/squelch/condition.hpp"
 
 #include <map>
-#include <boost/algorithm/string/predicate.hpp>
+
 
 #include "jsoncons_helpers.hpp"
 #include "tome/squelch/cursor.hpp"
@@ -186,7 +187,7 @@ bool NameCondition::is_match(object_type *o_ptr) const
 	char buf1[128];
 	object_desc(buf1, o_ptr, -1, 0);
 
-	return boost::algorithm::iequals(m_name, buf1);
+	return iequals(m_name, buf1);
 }
 
 std::shared_ptr<Condition> NameCondition::from_json(jsoncons::json const &j)
@@ -221,7 +222,7 @@ bool ContainCondition::is_match(object_type *o_ptr) const
 {
 	char buf1[128];
 	object_desc(buf1, o_ptr, -1, 0);
-	return boost::algorithm::icontains(buf1, m_contain);
+	return icontains(buf1, m_contain);
 }
 
 std::shared_ptr<Condition> ContainCondition::from_json(jsoncons::json const &j)
@@ -529,7 +530,7 @@ void StatusCondition::to_json(jsoncons::json &j) const
 
 bool RaceCondition::is_match(object_type *o_ptr) const
 {
-	return boost::algorithm::iequals(m_race, rp_ptr->title);
+	return iequals(m_race, rp_ptr->title);
 }
 
 std::shared_ptr<Condition> RaceCondition::from_json(jsoncons::json const &j)
@@ -563,7 +564,7 @@ void RaceCondition::to_json(jsoncons::json &j) const
 
 bool SubraceCondition::is_match(object_type *o_ptr) const
 {
-	return boost::algorithm::iequals(m_subrace, rmp_ptr->title);
+	return iequals(m_subrace, rmp_ptr->title);
 }
 
 std::shared_ptr<Condition> SubraceCondition::from_json(jsoncons::json const &j)
@@ -597,7 +598,7 @@ void SubraceCondition::to_json(jsoncons::json &j) const
 
 bool ClassCondition::is_match(object_type *o_ptr) const
 {
-	return boost::algorithm::iequals(m_class, spp_ptr->title);
+	return iequals(m_class, spp_ptr->title);
 }
 
 std::shared_ptr<Condition> ClassCondition::from_json(jsoncons::json const &j)
@@ -631,7 +632,7 @@ void ClassCondition::to_json(jsoncons::json &j) const
 
 bool InscriptionCondition::is_match(object_type *o_ptr) const
 {
-	return boost::algorithm::icontains(
+	return icontains(
 	        o_ptr->inscription,
 		m_inscription);
 }

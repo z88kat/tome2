@@ -1,6 +1,6 @@
 #pragma once
 
-#include <boost/noncopyable.hpp>
+
 #include <memory>
 #include <jsoncons/json.hpp>
 #include <vector>
@@ -16,8 +16,12 @@ namespace squelch {
 /**
  * Automatizer
  */
-class Automatizer : public boost::noncopyable
+class Automatizer
 {
+public:
+	Automatizer(Automatizer const &) = delete;
+	Automatizer &operator=(Automatizer const &) = delete;
+
 public:
 	Automatizer(std::shared_ptr<TreePrinter> tree_printer,
 		    std::shared_ptr<Cursor> cursor)

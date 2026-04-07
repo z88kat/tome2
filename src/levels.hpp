@@ -2,28 +2,28 @@
 
 #include "dungeon_flag_set.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <string>
 
 /**
  * Get the level description, for special levels.
  */
-boost::optional<std::string> get_level_description();
+std::optional<std::string> get_level_description();
 
 /**
  * Get the level name, for special levels.
  */
-boost::optional<std::string> get_dungeon_name();
+std::optional<std::string> get_dungeon_name();
 
 /**
  * Get the map name, for special levels.
  */
-boost::optional<std::string> get_dungeon_map_name();
+std::optional<std::string> get_dungeon_map_name();
 
 /**
  * Get the dungeon save file extension, for special levels.
  */
-boost::optional<std::string> get_dungeon_save_extension();
+std::optional<std::string> get_dungeon_save_extension();
 
 /**
  * Get dungeon flags, for special levels. Returns an empty

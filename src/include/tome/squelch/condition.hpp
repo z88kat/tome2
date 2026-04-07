@@ -2,7 +2,7 @@
 
 #include "tome/squelch/condition_fwd.hpp"
 
-#include <boost/noncopyable.hpp>
+
 #include <cstdint>
 #include <functional>
 #include <memory>
@@ -34,8 +34,12 @@ EnumStringMap<match_type> &match_mapping();
  * Condition represents a tree of checks which
  * can be applied to objects, the player, etc.
  */
-class Condition : public boost::noncopyable
+class Condition
 {
+public:
+	Condition(Condition const &) = delete;
+	Condition &operator=(Condition const &) = delete;
+
 public:
 	Condition(match_type match_) : match(match_) {
 	}

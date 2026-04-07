@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 #include "spells5.hpp"
 
 #include "spell_type.hpp"
@@ -7,10 +8,10 @@
 #include "variable.hpp"
 #include "z-rand.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::equals;
+
 
 static s16b school_spells_count = 0;
 static struct spell_type *school_spells[SCHOOL_SPELLS_MAX];
@@ -40,7 +41,7 @@ spell_type *spell_at(s32b index)
 	return school_spells[index];
 }
 
-boost::optional<int> find_spell(const char *name)
+std::optional<int> find_spell(const char *name)
 {
 	int i;
 
@@ -48,11 +49,11 @@ boost::optional<int> find_spell(const char *name)
 	{
 		if (equals(spell_type_name(spell_at(i)), name))
 		{
-			return boost::make_optional(i);
+			return std::make_optional(i);
 		}
 	}
 
-	return boost::none;
+	return std::nullopt;
 }
 
 s16b get_random_spell(s16b random_type, int level)

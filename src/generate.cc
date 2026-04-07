@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -44,12 +45,12 @@
 #include "z-rand.hpp"
 #include "z-term.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 #include <memory>
 #include <vector>
 
-using boost::algorithm::equals;
+
 
 #define SAFE_MAX_ATTEMPTS 5000
 

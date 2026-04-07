@@ -1,19 +1,18 @@
 #pragma once
 
-#include <boost/optional.hpp>
-#include <boost/optional/optional_io.hpp>
+#include <optional>
 #include <cppqc/Arbitrary.h>
 
 namespace cppqc {
 
 template<typename T>
-boost::optional<T> arbitraryBoostOptional(RngEngine &rng, std::size_t size)
+std::optional<T> arbitraryStdOptional(RngEngine &rng, std::size_t size)
 {
 	std::uniform_int_distribution<> distribution(0, 4);
 
 	if (distribution(rng) == 0)
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 	else
 	{
@@ -22,13 +21,13 @@ boost::optional<T> arbitraryBoostOptional(RngEngine &rng, std::size_t size)
 }
 
 template<typename T>
-std::vector<boost::optional<T>> shrinkBoostOptional(boost::optional<T> shrinkInput)
+std::vector<std::optional<T>> shrinkStdOptional(std::optional<T> shrinkInput)
 {
-	std::vector<boost::optional<T>> result;
+	std::vector<std::optional<T>> result;
 
 	if (shrinkInput)
 	{
-		result.push_back(boost::none);
+		result.push_back(std::nullopt);
 
 		for (auto const &t: Arbitrary<T>::shrink(*shrinkInput))
 		{
@@ -40,21 +39,21 @@ std::vector<boost::optional<T>> shrinkBoostOptional(boost::optional<T> shrinkInp
 }
 
 template <typename T>
-class ArbitraryImpl<boost::optional<T>> {
+class ArbitraryImpl<std::optional<T>> {
 
 public:
-	static const typename Arbitrary<boost::optional<T>>::unGenType unGen;
+	static const typename Arbitrary<std::optional<T>>::unGenType unGen;
 
-	static const typename Arbitrary<boost::optional<T>>::shrinkType shrink;
+	static const typename Arbitrary<std::optional<T>>::shrinkType shrink;
 
 };
 
 template <typename T>
-const typename Arbitrary<boost::optional<T>>::unGenType
-ArbitraryImpl<boost::optional<T>>::unGen = arbitraryBoostOptional<T>;
+const typename Arbitrary<std::optional<T>>::unGenType
+ArbitraryImpl<std::optional<T>>::unGen = arbitraryStdOptional<T>;
 
 template <typename T>
-const typename Arbitrary<boost::optional<T>>::shrinkType
-ArbitraryImpl<boost::optional<T>>::shrink = shrinkBoostOptional<T>;
+const typename Arbitrary<std::optional<T>>::shrinkType
+ArbitraryImpl<std::optional<T>>::shrink = shrinkStdOptional<T>;
 
 } // namespace cppqc

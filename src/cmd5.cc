@@ -45,8 +45,8 @@
 #include "z-form.hpp"
 #include "z-rand.hpp"
 
-#include <boost/noncopyable.hpp>
-#include <boost/optional.hpp>
+
+#include <optional>
 #include <cassert>
 
 /* Maximum number of tries for teleporting */
@@ -1811,19 +1811,19 @@ void use_monster_power(int r_idx, bool great)
 static int hack_force_spell = -1;
 static s32b hack_force_spell_pval = -1;
 
-boost::optional<int> get_item_hook_find_spell(object_filter_t const &)
+std::optional<int> get_item_hook_find_spell(object_filter_t const &)
 {
 	char buf[80];
 	strcpy(buf, "Manathrust");
 	if (!get_string("Spell name? ", buf, 79))
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 
 	auto spell_idx = find_spell(buf);
 	if (!spell_idx)
 	{
-		return boost::none;
+		return std::nullopt;
 	}
 	int const spell = *spell_idx;
 
@@ -1860,7 +1860,7 @@ boost::optional<int> get_item_hook_find_spell(object_filter_t const &)
 		}
 	}
 
-	return boost::none;
+	return std::nullopt;
 }
 
 /*

@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 1989 James E. Wilson, Robert A. Koeneke
  *
@@ -42,7 +43,7 @@
 #include "z-rand.hpp"
 
 #include <algorithm>
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 #include <fmt/format.h>
 #include <memory>
@@ -51,7 +52,7 @@
 #include <unordered_set>
 #include <vector>
 
-using boost::algorithm::equals;
+
 
 /*
  * Hack -- redraw the screen

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "object_flag_set.hpp"
-#include <boost/preprocessor/cat.hpp>
+
 
 //
 // Define flag set for each flag.

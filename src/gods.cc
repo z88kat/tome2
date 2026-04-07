@@ -1,3 +1,4 @@
+#include "string_util.hpp"
 /*
  * Copyright (c) 2002 DarkGod
  *
@@ -17,10 +18,10 @@
 #include "xtra2.hpp"
 #include "z-form.hpp"
 
-#include <boost/algorithm/string/predicate.hpp>
+
 #include <cassert>
 
-using boost::algorithm::equals;
+
 
 /*
  * Add amt piety is god is god

@@ -16,10 +16,10 @@
 #include "util.hpp"
 #include "variable.hpp"
 
-#include <boost/filesystem/path.hpp>
+#include <filesystem>
 #include <fmt/format.h>
 
-namespace fs = boost::filesystem;
+namespace fs = std::filesystem;
 
 /**
  * Get note path name

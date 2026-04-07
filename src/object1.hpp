@@ -4,10 +4,10 @@
 #include "object_filter.hpp"
 #include "object_flag_set.hpp"
 
-#include <boost/optional.hpp>
+#include <optional>
 #include <functional>
 
-typedef std::function<boost::optional<int>(object_filter_t const &filter)> select_by_name_t;
+typedef std::function<std::optional<int>(object_filter_t const &filter)> select_by_name_t;
 
 byte get_item_letter_color(object_type const *o_ptr);
 void object_pickup(int this_o_idx);
@@ -17,7 +17,7 @@ bool wield_set(s16b a_idx, s16b set_idx, bool silent);
 bool verify(const char *prompt, int item);
 void flavor_init();
 void reset_visuals();
-boost::optional<int> object_power(object_type *o_ptr);
+std::optional<int> object_power(object_type *o_ptr);
 extern bool object_flags_no_set;
 object_flag_set object_flags(object_type const *o_ptr);
 object_flag_set object_flags_known(object_type const *o_ptr);
