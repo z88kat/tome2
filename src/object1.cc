@@ -167,7 +167,7 @@ struct object_colors_t {
 
 object_colors_t const &object_colors_0()
 {
-	object_colors_t const *instance = new object_colors_t();
+	static object_colors_t const *instance = new object_colors_t();
 	return *instance;
 }
 

@@ -78,6 +78,40 @@ Each frontend requires the additional packages listed below:
 - ncurses: `libncurses5-dev`
 
 
+## Compiling on macOS
+
+Install the required dependencies via [Homebrew](https://brew.sh/):
+
+    $ brew install cmake boost
+
+macOS does not ship X11, so the `tome-x11` frontend requires
+[XQuartz](https://www.xquartz.org/). Install it with:
+
+    $ brew install --cask xquartz
+
+After installing XQuartz, **log out and back in** so that the `DISPLAY`
+environment variable is set correctly.
+
+The `tome-gcu` (ncurses) frontend uses the system ncurses, which is
+present on macOS by default. No extra install is needed for it.
+
+Once dependencies are in place, build normally:
+
+    $ cmake -B build
+    $ cmake --build build
+
+CMake will automatically detect which frontends are available and build
+only those. To check which executables were produced, list `./build/`.
+Typically you will see `tome-gcu` (ncurses terminal) and, if XQuartz
+is installed, `tome-x11`.
+
+**Note:** The project requires a C++17-capable compiler. Apple Clang
+(included with Xcode Command Line Tools) satisfies this. Install the
+tools if needed:
+
+    $ xcode-select --install
+
+
 ## Compiling on OpenBSD
 
 As of February 2010, the OpenBSD package cmake-2.4.8p2 is too old for
